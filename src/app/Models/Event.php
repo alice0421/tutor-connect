@@ -10,7 +10,7 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'student_id',
+        'user_id',
         'teacher_id',
         'date_time',
         'type',
@@ -21,8 +21,8 @@ class Event extends Model
         return $this->hasOne(Feedback::class);
     }
 
-    public function student(){
-        return $this->belongsTo(Student::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function teacher(){

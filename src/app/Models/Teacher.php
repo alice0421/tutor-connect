@@ -69,8 +69,8 @@ class Teacher extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function students(){
-        return $this->belongsToMany(Student::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 
     public function subjects(){

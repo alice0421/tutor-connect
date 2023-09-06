@@ -11,7 +11,7 @@ class Feedback extends Model
 
     protected $fillable = [
         'event_id',
-        'student_id',
+        'user_id',
         'teacher_id',
         'date_time',
         'content',
@@ -21,8 +21,8 @@ class Feedback extends Model
         return $this->belongsTo(Event::class);
     }
 
-    public function student(){
-        return $this->belongsTo(Student::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function teacher(){
