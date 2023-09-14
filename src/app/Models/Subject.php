@@ -15,8 +15,8 @@ class Subject extends Model
 
     public $timestamps = false;
 
-    public function students(){
-        return $this->belongsToMany(Student::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 
     public function teachers(){

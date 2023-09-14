@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class StudentSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,7 @@ class StudentSeeder extends Seeder
     public function run()
     {
         // 必要最低限の記入
-        DB::table('students')->insert([
+        DB::table('users')->insert([
             'name' => '加藤浩一',
             'email' => 'taro.yamada@gmail.com',
             'gender' => 0, // 男
@@ -26,7 +26,7 @@ class StudentSeeder extends Seeder
         ]);
 
         // 必要最低限+αの記入
-        DB::table('students')->insert([
+        DB::table('users')->insert([
             'name' => '佐々木駿介',
             'email' => 'jiro.yamada@gmail.com',
             'gender' => 0, // 男
@@ -37,7 +37,7 @@ class StudentSeeder extends Seeder
         ]);
 
         // フル記入
-        DB::table('students')->insert([
+        DB::table('users')->insert([
             'name' => '山岸萌香',
             'nickname' => 'Moe',
             'is_name_public' => 1,

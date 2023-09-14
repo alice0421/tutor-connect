@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('student_teacher', function (Blueprint $table) {
-            $table->foreignId('student_id')->constrained('students')->onUpdate('cascade')->onDelete('cascade');
+        Schema::create('teacher_user', function (Blueprint $table) {
             $table->foreignId('teacher_id')->constrained('teachers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->primary(['student_id', 'teacher_id']);
+            $table->primary(['teacher_id', 'user_id']);
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_teacher');
+        Schema::dropIfExists('teacher_user');
     }
 };
