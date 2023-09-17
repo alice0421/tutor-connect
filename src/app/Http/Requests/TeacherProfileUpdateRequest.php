@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
+use App\Models\Teacher;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProfileUpdateRequest extends FormRequest
+class TeacherProfileUpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -18,14 +18,13 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'first_name' => ['required', 'string', 'max:255'],
             'family_name' => ['required', 'string', 'max:255'],
-            'nickname' => ['string', 'max:255'],
-            'is_name_public' => 'required',
-            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'email' => ['email', 'max:255', Rule::unique(Teacher::class)->ignore($this->user()->id)],
             'gender' => 'required',
+            'affiliation' => ['required', 'string', 'max:255'],
             'grade' => 'required',
-            'preferred_class_per_day' => '',
-            'preferred_studying_day_per_week' => '',
-            'purpose' => '',
+            'teaching_history' => '',
+            'achievement' => '',
+            'introduction' => '',
         ];
     }
 }
