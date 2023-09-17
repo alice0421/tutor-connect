@@ -4,12 +4,14 @@
 
         <p>※ <span class="text-red-600">*</span>が付いているものは必須事項です。</p>
 
-        <!-- Name -->
+        <!-- Family Name -->
         <div class="mt-4">
             <span class="text-red-600">*</span><x-input-label for="family_name" :value="__('姓')" class="inline" />
             <x-text-input id="family_name" class="block mt-1 w-full" type="text" name="family_name" :value="old('family_name')" required autocomplete="family-name" />
             <x-input-error :messages="$errors->get('family_name')" class="mt-2" />
         </div>
+
+        <!-- First Name -->
         <div class="mt-4">
             <span class="text-red-600">*</span><x-input-label for="first_name" :value="__('名')" class="inline" />
             <x-text-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autocomplete="given-name" />
@@ -50,7 +52,7 @@
         <div class="mt-4">
             <span class="text-red-600">*</span><x-input-label for="gender" :value="__('性別')" class="inline" />
             <x-select id="gender" class="block mt-1 w-full" name="gender" required>
-                <option hidden>性別を選択してください。</option>
+                <option value="" hidden>--性別を選択してください。--</option>
                 <option value="0" {{ old('gender') === '0' ? 'selected' : '' }}>男</option>
                 <option value="1" {{ old('gender') === '1' ? 'selected' : '' }}>女</option>
                 <option value="2" {{ old('gender') === '2' ? 'selected' : '' }}>その他</option>
@@ -69,7 +71,7 @@
         <div class="mt-4">
             <span class="text-red-600">*</span><x-input-label for="grade" :value="__('学年')" class="inline" />
             <x-select id="grade" class="block mt-1 w-full" name="grade" required>
-                <option value="" hidden>学年を選択してください。</option>
+                <option value="" hidden>--学年を選択してください。--</option>
                 <option value="0" {{ old('grade') === '0' ? 'selected' : '' }}>学部1年生</option>
                 <option value="1" {{ old('grade') === '1' ? 'selected' : '' }}>学部2年生</option>
                 <option value="2" {{ old('grade') === '2' ? 'selected' : '' }}>学部3年生</option>
@@ -84,7 +86,7 @@
         <div class="mt-4">
             <x-input-label for="teaching_history" :value="__('指導歴')" />
             <x-select id="teaching_history" class="block mt-1 w-full" name="teaching_history">
-                <option value="" hidden>指導歴を選択してください。</option>
+                <option value="" hidden>--指導歴を選択してください。--</option>
                 <option value="0" {{ old('teaching_history') === '0' ? 'selected' : '' }}>1年未満</option>
                 <option value="1" {{ old('teaching_history') === '1' ? 'selected' : '' }}>1年以上2年未満</option>
                 <option value="2" {{ old('teaching_history') === '2' ? 'selected' : '' }}>2年以上3年未満</option>
