@@ -76,4 +76,19 @@ class Teacher extends Authenticatable
     public function subjects(){
         return $this->belongsToMany(Subject::class);
     }
+
+    // 先生が担当する科目の中で、生徒の希望科目に該当する科目を取得。
+    public function applicable_user_subjects (User $user): array
+    {
+        $teacher_applicable_subjects = [];
+        foreach ($user->subjects()->get() as $subject) {
+            foreach ($this->subjects()->get() as $teacher_subject) {
+                if ($teacher_subject->id === $subject->id) {
+                    $teacher_applicable_subjects[] = $subject;
+                }
+            }
+        }
+        
+        return $teacher_applicable_subjects;
+    }
 }
