@@ -76,5 +76,13 @@ class SubjectTeacherSeeder extends Seeder
             'subject_id' => 11, // 数学ⅡB
             'teacher_id' => 6,
         ]);
+
+        // 坂本大智先生 (全教科) の指導可能科目
+        for ($i = 1; $i <= 19; $i++) {
+            DB::table('subject_teacher')->insert([
+                'subject_id' => $i, // 全教科
+                'teacher_id' => 7,
+            ]);
+        }
     }
 }
