@@ -44,7 +44,7 @@ Route::middleware('auth:teacher')->controller(TeacherProfileController::class)->
 
 // usersだけが見れる先生とのマッチング
 Route::middleware('auth')->controller(MatchingController::class)->group(function () {
-    Route::get('/matching', 'index')->name('matching');
+    Route::get('/matchings', 'index')->name('matching.index');
 });
 
 
