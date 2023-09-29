@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -76,5 +77,34 @@ class User extends Authenticatable
 
     public function teachers(){
         return $this->belongsToMany(Teacher::class);
+    }
+
+    // 先生を生徒の科目に最も適する順に並べ替え
+    public function orderby_recommend_teachers (): array
+    {
+        // 生徒の希望科目を全取得
+        $subjects = $this->subjects()->get();
+        // 各先生に対して当てはまる科目数をカウント ([teacher_id => count]の形で保存)
+        $teacher_count = [];
+        foreach ($subjects as $subject) {
+            $teachers = $subject->teachers()->get();
+            foreach ($teachers as $teacher) {
+                if (array_key_exists($teacher->id, $teacher_count)) {
+                    $teacher_count[$teacher->id]++;
+                } else {
+                    $teacher_count[$teacher->id] = 1;
+                }
+            }
+        }
+        // 該当する科目数が多い先生順に並び替え
+        arsort($teacher_count);
+        $teacher_ids = array_keys($teacher_count);
+        // 上位3人の先生を取得
+        $teachers = [];
+        for ($i = 0; $i < 3; $i++) {
+            $teachers[$teacher_ids[$i]] = Teacher::find($teacher_ids[$i]);
+        }
+
+        return $teachers;
     }
 }

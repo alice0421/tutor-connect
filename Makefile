@@ -18,3 +18,7 @@ down:
 .PHONY: app
 app:
 	@docker-compose exec app bash
+
+.PHONY: db_fresh
+db_fresh:
+	@docker-compose exec app php artisan migrate:fresh --seed

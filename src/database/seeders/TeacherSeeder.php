@@ -95,5 +95,19 @@ class TeacherSeeder extends Seeder
             'introduction' => 'なぜ分からないのかを根底から洗い出し、底力をつけさせて学力を上げることを目標としています。',
             'password' => Hash::make('password'),
         ]);
+
+        // 全種類の先生
+        DB::table('teachers')->insert([
+            'first_name' => '大智',
+            'family_name' => '坂本',
+            'email' => 'taishi.sakamoto@gmail.com',
+            'gender' => 0, // 男
+            'affiliation' => '東京大学',
+            'grade' => 3, // 大学4年生
+            'teaching_history' => 10,
+            'achievement' => '高校生の時より、大学受験をする学生のサポートをしてきました。',
+            'introduction' => '全教科網羅しています。',
+            'password' => Hash::make('password'),
+        ]);
     }
 }
