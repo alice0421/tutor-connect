@@ -23,34 +23,39 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('users.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/teachers/dashboard', function () {
+Route::get('/teacher/dashboard', function () {
     return view('teachers.dashboard');
 })->middleware(['auth:teacher'])->name('teacher.dashboard');
 
 
 // usersだけが見れるプロフィール（編集・削除権限）
-Route::middleware('auth')->controller(ProfileController::class)->group(function () {
+Route::middleware(['auth'])->controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'edit')->name('profile.edit');
     Route::patch('/profile', 'update')->name('profile.update');
     Route::delete('/profile', 'destroy')->name('profile.destroy');
 });
 // teachersだけが見れるプロフィール（編集・削除権限）
-Route::middleware('auth:teacher')->controller(TeacherProfileController::class)->prefix('teachers')->name('teacher.')->group(function () {
+Route::middleware(['auth:teacher'])->controller(TeacherProfileController::class)->prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/profile', 'edit')->name('profile.edit');
     Route::patch('/profile', 'update')->name('profile.update');
     Route::delete('/profile', 'destroy')->name('profile.destroy');
 });
+// usersとteachersに見えるプロフィール（閲覧権限）
+Route::middleware(['auth:web,teacher'])->controller(TeacherProfileController::class)->group(function () {
+    Route::get('/profile/teacher/{teacher}', 'show')->name('teacher.profile.show');
+});
 
 
 // usersだけが見れる先生とのマッチング
-Route::middleware('auth')->controller(MatchingController::class)->group(function () {
-    Route::get('/matchings', 'index')->name('matching.index');
+Route::middleware(['auth'])->controller(MatchingController::class)->group(function () {
+    Route::get('/matching', 'index')->name('matching.index');
+    Route::post('matching/apply/{teacher}', 'apply')->name('matching.apply');
 });
 
 
 // usersの認証系のルーティング
 require __DIR__.'/auth.php';
 // teachersの認証系のルーティング
-Route::prefix('teachers')->name('teacher.')->group(function () {
+Route::prefix('teacher')->name('teacher.')->group(function () {
     require __DIR__.'/auth_teacher.php';
 });
