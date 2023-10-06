@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TeacherProfileUpdateRequest;
+use App\Models\Teacher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,5 +57,10 @@ class TeacherProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function show(Teacher $teacher): View
+    {
+        return view('teachers.profile.show')->with(['teacher' => $teacher]);
     }
 }
