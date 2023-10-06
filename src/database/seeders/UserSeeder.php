@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'first_name' => '浩一',
             'family_name' => '加藤',
-            'email' => 'taro.yamada@gmail.com',
+            'email' => 'koichi.kato@gmail.com',
             'gender' => 0, // 男
             'grade' => 2, // 中学3年生
             'password' => Hash::make('password'),
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'first_name' => '駿介',
             'family_name' => '佐々木',
-            'email' => 'jiro.yamada@gmail.com',
+            'email' => 'syunsuke.sasaki@gmail.com',
             'gender' => 0, // 男
             'grade' => 0, // 中学1年生
             'preferred_class_per_day' => 2, // 2コマ/日
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             'family_name' => '山岸',
             'nickname' => 'Moe',
             'is_name_public' => 1,
-            'email' => 'hanako.yamada@gmail.com',
+            'email' => 'moeka.yamagishi@gmail.com',
             'gender' => 1, // 女
             'grade' => 4, // 高校2年生
             'preferred_class_per_day' => 5, // 5コマ/日
