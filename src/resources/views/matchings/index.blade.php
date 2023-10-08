@@ -5,7 +5,16 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="relative py-12">
+        @if (session('success'))
+            <x-flash-message :message="session('success')" type="success" class="animate-flash-message absolute top-[-50px] left-1/4" />
+        @endif
+        @if (session('info'))
+            <x-flash-message :message="session('info')" type="info" class="animate-flash-message absolute top-[-50px] left-1/4" />
+        @endif
+        @if (session('error'))
+            <x-flash-message :message="session('error')" type="error" class="animate-flash-message absolute top-[-50px] left-1/4" />
+        @endif
         <div class="w-[1140px] mx-auto px-8">
             <div class="bg-white overflow-hidden shadow-sm">
                 <div class="p-6 text-gray-900">

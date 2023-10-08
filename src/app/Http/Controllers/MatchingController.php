@@ -42,11 +42,22 @@ class MatchingController extends Controller
     // 生徒から講師への指導申請
     public function apply (Teacher $teacher): RedirectResponse
     {
+        if (Matching::where(['user_id' => Auth::id(), 'teacher_id' => $teacher->id, 'is_accepted' => 1])->exists()) {
+            return back()->with('info', '現在指導を受けている講師です。');
+        }
+        if (Matching::where(['user_id' => Auth::id(), 'teacher_id' => $teacher->id, 'is_accepted' => -1])->exists()) {
+            return back()->with('info', '既に指導申請済みです。承認までしばらくお待ちください。');
+        }
+
         $matching = Matching::create([
             'user_id' => Auth::id(),
             'teacher_id' => $teacher->id,
         ]);
-
-        return redirect()->route('matching.index');
+        if ($matching) {
+            return back()->with('success', '指導申請できました。承認までしばらくお待ちください。');
+        } else {
+            return back()->with('error', '予期せぬエラーにより、指導申請できませんでした。もう一度お試しください。');
+        }
+        
     }
 }

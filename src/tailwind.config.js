@@ -13,6 +13,17 @@ module.exports = {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            keyframes: {
+                flashFade: {
+                    '0%': { opacity: 0 },
+                    '20%': { opacity: 1 },
+                    '80%': { opacity: 1 },
+                    '100%': { opacity: 0 },
+                },
+            },
+            animation: {
+                'flash-message': 'flashFade 5.0s forwards',
+            },
         },
     },
 
